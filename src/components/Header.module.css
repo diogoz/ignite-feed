@@ -1,9 +1,9 @@
 .header {
-  background: #333;
+  background: var(--gray-800);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.25rem;
+  padding: 1.25rem 0;
 }
 
 .header img {
