@@ -21,7 +21,7 @@ export function App() {
         },
         { type: "link", content: "jane.design/doctorcare" },
       ],
-      publishedAt: new Date("2022-12-10 20:00:00"),
+      publishedAt: new Date("2023-12-10 20:00:00"),
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ export function App() {
         },
         { type: "link", content: "jane.design/doctorcare" },
       ],
-      publishedAt: new Date("2022-12-09 20:00:00"),
+      publishedAt: new Date("2023-12-09 20:00:00"),
     },
   ];
 
