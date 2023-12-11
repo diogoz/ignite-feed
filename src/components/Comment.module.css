@@ -4,12 +4,6 @@
   gap: 1rem;
 }
 
-.comment > img {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 8px;
-}
-
 .commentBox {
   flex: 1;
 }
@@ -73,14 +67,14 @@
   border-radius: 2px;
 }
 
-.commentBox footer button:hover{
+.commentBox footer button:hover {
   color: var(--white);
 }
-  
+
 .commentBox footer button > span {
   transition: color 0.4s;
 }
-  
+
 .commentBox footer button:hover > span {
   color: var(--gray-400);
 }
@@ -88,7 +82,7 @@
 .commentBox footer button svg {
   margin-right: 0.5rem;
 }
-  
+
 .commentBox footer button span::before {
   content: "\2022";
   padding: 0 0.25rem;

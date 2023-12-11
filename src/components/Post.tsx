@@ -1,3 +1,4 @@
+import { Avatar } from "./Avatar";
 import { Comment } from "./Cooment";
 import styles from "./Post.module.css";
 
@@ -6,11 +7,7 @@ export function Post() {
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
-            src="https://cdn.meutimao.com.br/_upload/idolos-do-corinthians/adenor.jpg"
-            alt="Foto de perfil"
-          />
+          <Avatar src="https://cdn.meutimao.com.br/_upload/idolos-do-corinthians/adenor.jpg" />
           <div className={styles.authorInfo}>
             <strong>Diogo Henrique</strong>
             <span>Web Developer</span>
