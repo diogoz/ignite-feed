@@ -6,18 +6,27 @@ import styles from "./Post.module.css";
 import { useState } from "react";
 
 interface PostProps {
-  author: {
-    avatarUrl: string;
-    name: string;
-    role: string;
-  };
+  author: AuthorProps;
   publishedAt: Date;
+  content: ContentProps[];
+}
+
+interface ContentProps {
+  type: string;
   content: string;
+}
+
+interface AuthorProps {
+  avatarUrl: string;
+  name: string;
+  role: string;
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
   const [comments, setComments] = useState(["Post muito bacana, hein?"]);
   const [newCommentText, setNewCommentText] = useState("");
+
+  const isNewCommentEmpty = newCommentText.length === 0;
 
   const publishedDateFormatted = format(
     publishedAt,
@@ -32,19 +41,31 @@ export function Post({ author, publishedAt, content }: PostProps) {
     addSuffix: true,
   });
 
-  function handleCrateNewComment() {
+  function handleCrateNewComment(event: React.ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   }
 
-  function handleNewCommentChange() {
+  function handleNewCommentChange(
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    event.target.setCustomValidity("");
     setNewCommentText(event?.target.value);
   }
 
-  function deleteComment(comment: string) {
-    console.log(`Deletar comentário ${comment}`);
+  function handleNewCommentInvalid(
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    event.target.setCustomValidity("Esse campo é obrigatório!");
+  }
+
+  function deleteComment(commentToDelete: string) {
+    const commentsWithoutDeleteOne = comments.filter((comment) => {
+      return comment !== commentToDelete;
+    });
+    setComments(commentsWithoutDeleteOne);
   }
 
   return (
@@ -88,10 +109,14 @@ export function Post({ author, publishedAt, content }: PostProps) {
           name="comment"
           value={newCommentText}
           onChange={handleNewCommentChange}
+          required
+          onInvalid={handleNewCommentInvalid}
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button type="submit" disabled={isNewCommentEmpty}>
+            Publicar
+          </button>
         </footer>
       </form>
 
