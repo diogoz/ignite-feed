@@ -5,9 +5,14 @@ import { ThumbsUp, Trash } from "phosphor-react";
 
 interface CommentProps {
   content: string;
+  onDeleteComment: (comment: string) => void;
 }
 
-export function Comment({ content }: CommentProps) {
+export function Comment({ content, onDeleteComment }: CommentProps) {
+  function handleDeleteComment() {
+    onDeleteComment(content);
+  }
+
   return (
     <div className={styles.comment}>
       <Avatar
@@ -25,7 +30,7 @@ export function Comment({ content }: CommentProps) {
               </time>
             </div>
 
-            <button title="Deletar comentário">
+            <button title="Deletar comentário" onClick={handleDeleteComment}>
               <Trash size={24} />
             </button>
           </header>
