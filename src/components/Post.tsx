@@ -12,13 +12,12 @@ interface PostProps {
     role: string;
   };
   publishedAt: Date;
-  content: {
-    type: string;
-  };
+  content: string;
 }
 
 export function Post({ author, publishedAt, content }: PostProps) {
-  const [comments, setComments] = useState([1, 2]);
+  const [comments, setComments] = useState(["Post muito bacana, hein?"]);
+  const [newCommentText, setNewCommentText] = useState("");
 
   const publishedDateFormatted = format(
     publishedAt,
@@ -36,7 +35,12 @@ export function Post({ author, publishedAt, content }: PostProps) {
   function handleCrateNewComment() {
     event.preventDefault();
 
-    setComments([...comments, comments.length + 1]);
+    setComments([...comments, newCommentText]);
+    setNewCommentText("");
+  }
+
+  function handleNewCommentChange() {
+    setNewCommentText(event?.target.value);
   }
 
   return (
@@ -75,7 +79,12 @@ export function Post({ author, publishedAt, content }: PostProps) {
       <form className={styles.commentForm} onSubmit={handleCrateNewComment}>
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          placeholder="Deixe um comentário"
+          name="comment"
+          value={newCommentText}
+          onChange={handleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -84,7 +93,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment />;
+          return <Comment content={comment} />;
         })}
       </div>
     </article>
