@@ -2,9 +2,9 @@ import { Header } from "./components/Header";
 import styles from "./App.module.css";
 import "./global.css";
 import { Sidebar } from "./components/Sidebar";
-import { Post } from "./components/Post";
+import { Post, PostType } from "./components/Post";
 export function App() {
-  const posts = [
+  const posts: PostType[] = [
     {
       id: 1,
       author: {
