@@ -3,7 +3,7 @@ import ptBR from "date-fns/locale/pt-BR";
 import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
-import { useState } from "react";
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from "react";
 
 interface PostProps {
   author: AuthorProps;
@@ -41,23 +41,19 @@ export function Post({ author, publishedAt, content }: PostProps) {
     addSuffix: true,
   });
 
-  function handleCrateNewComment(event: React.ChangeEvent<HTMLFormElement>) {
+  function handleCrateNewComment(event: FormEvent) {
     event.preventDefault();
 
     setComments([...comments, newCommentText]);
     setNewCommentText("");
   }
 
-  function handleNewCommentChange(
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) {
+  function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("");
     setNewCommentText(event?.target.value);
   }
 
-  function handleNewCommentInvalid(
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) {
+  function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity("Esse campo é obrigatório!");
   }
 
