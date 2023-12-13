@@ -8,7 +8,8 @@ export function App() {
     {
       id: 1,
       author: {
-        avatarUrl: "https://github.com/diogoz.png",
+        avatarUrl:
+          "https://cdn.meutimao.com.br/_upload/idolos-do-corinthians/adenor.jpg",
         name: "Diogo Henrique",
         role: "Web Developer",
       },
@@ -26,9 +27,10 @@ export function App() {
     {
       id: 2,
       author: {
-        avatarUrl: "https://github.com/renatojfsantos.png",
-        name: "Renato Santos",
-        role: "Developer",
+        avatarUrl:
+          "https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/10/Tite-flamengo-1.jpeg?w=1200&h=1200&crop=1",
+        name: "Tite Traíra",
+        role: "Técnico de Futebol",
       },
       content: [
         { type: "paragraph", content: "Fala galera 👋" },
@@ -51,15 +53,7 @@ export function App() {
         <Sidebar />
         <main>
           {posts.map((post) => {
-            return (
-              <div key={post.id}>
-                <Post
-                  author={post.author}
-                  content={post.content}
-                  publishedAt={post.publishedAt}
-                />
-              </div>
-            );
+            return <Post post={post} key={post.id} />;
           })}
         </main>
       </div>
